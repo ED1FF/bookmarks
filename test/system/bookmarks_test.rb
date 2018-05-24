@@ -14,7 +14,7 @@ class BookmarksTest < ApplicationSystemTestCase
     visit bookmarks_url
     click_on "New Bookmark"
 
-    fill_in "Lago", with: @bookmark.lago
+    fill_in "logo", with: @bookmark.logo
     fill_in "Name", with: @bookmark.name
     fill_in "Sc Shot", with: @bookmark.sc_shot
     fill_in "Url", with: @bookmark.url
@@ -28,7 +28,7 @@ class BookmarksTest < ApplicationSystemTestCase
     visit bookmarks_url
     click_on "Edit", match: :first
 
-    fill_in "Lago", with: @bookmark.lago
+    fill_in "logo", with: @bookmark.logo
     fill_in "Name", with: @bookmark.name
     fill_in "Sc Shot", with: @bookmark.sc_shot
     fill_in "Url", with: @bookmark.url

@@ -4,17 +4,18 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = Bookmark.all
+    @bookmarks = Bookmark.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /bookmarks/1
   # GET /bookmarks/1.json
   def show
+    redirect_to root_path
   end
 
   # GET /bookmarks/new
   def new
-    @bookmark = Bookmark.new
+    @bookmark = current_user.bookmarks.build
   end
 
   # GET /bookmarks/1/edit
@@ -24,8 +25,7 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.json
   def create
-    @bookmark = Bookmark.new(bookmark_params)
-
+    @bookmark = current_user.bookmarks.build(bookmark_params)
     respond_to do |format|
       if @bookmark.save
         format.html { redirect_to @bookmark, notice: 'Bookmark was successfully created.' }
@@ -69,6 +69,10 @@ class BookmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookmark_params
-      params.require(:bookmark).permit(:sc_shot, :lago, :url, :name)
+      params.require(:bookmark).permit(:sc_shot, :logo, :url, :name)
+    end
+
+    def set_auth
+      @auth = session[:omniauth] if session[:omniauth]
     end
 end

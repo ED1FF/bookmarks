@@ -2,12 +2,12 @@
 
 one:
   sc_shot: MyString
-  lago: MyString
+  logo: MyString
   url: MyString
   name: MyString
 
 two:
   sc_shot: MyString
-  lago: MyString
+  logo: MyString
   url: MyString
   name: MyString

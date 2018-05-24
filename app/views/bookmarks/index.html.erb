@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Sc shot</th>
-      <th>Lago</th>
+      <th>logo</th>
       <th>Url</th>
       <th>Name</th>
       <th colspan="3"></th>
@@ -16,8 +16,8 @@
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
-        <td><%= bookmark.sc_shot %></td>
-        <td><%= bookmark.lago %></td>
+        <td><%= image_tag "#{bookmark.sc_shot}" %></td>
+        <td><%= image_tag "#{bookmark.logo}" %></td>
         <td><%= bookmark.url %></td>
         <td><%= bookmark.name %></td>
         <td><%= link_to 'Show', bookmark %></td>
@@ -29,11 +29,10 @@
 </table>
 
 <br>
-<% if current_user %>
-  Welcome
-  <%= current_user.name %>!
-  <%= link_to "Sign Out", sign_out_path %>
-<% else %>
-  <%= link_to "Sign in with Github", "/auth/github" %>
-<% end %>
 <%= link_to 'New Bookmark', new_bookmark_path %>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @posts %>
+    </div>
+    <%= will_paginate @posts, :container => false %>
+  </div>
