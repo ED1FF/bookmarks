@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bookmarks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sc shot</th>
+      <th>Lago</th>
+      <th>Url</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= bookmark.sc_shot %></td>
+        <td><%= bookmark.lago %></td>
+        <td><%= bookmark.url %></td>
+        <td><%= bookmark.name %></td>
+        <td><%= link_to 'Show', bookmark %></td>
+        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user %>
+  Welcome
+  <%= current_user.name %>!
+  <%= link_to "Sign Out", sign_out_path %>
+<% else %>
+  <%= link_to "Sign in with Github", "/auth/github" %>
+<% end %>
+<%= link_to 'New Bookmark', new_bookmark_path %>

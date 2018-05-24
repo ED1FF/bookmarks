@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sc shot:</strong>
+  <%= @bookmark.sc_shot %>
+</p>
+
+<p>
+  <strong>Lago:</strong>
+  <%= @bookmark.lago %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @bookmark.url %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bookmark.name %>
+</p>
+
+<%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
+<%= link_to 'Back', bookmarks_path %>

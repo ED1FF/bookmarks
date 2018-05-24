@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sc_shot: MyString
+  lago: MyString
+  url: MyString
+  name: MyString
+
+two:
+  sc_shot: MyString
+  lago: MyString
+  url: MyString
+  name: MyString
