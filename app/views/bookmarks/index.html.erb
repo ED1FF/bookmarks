@@ -31,8 +31,13 @@
 <br>
 <%= link_to 'New Bookmark', new_bookmark_path %>
 <div class="digg_pagination">
-    <div class="page_info">
-      <%= page_entries_info @posts %>
-    </div>
-    <%= will_paginate @posts, :container => false %>
+  <div class="page_info">
+    <%= page_entries_info @posts %>
   </div>
+  <%= will_paginate @posts, :container => false %>
+</div>
+
+<%= form_tag bookmarks_path, method: 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>

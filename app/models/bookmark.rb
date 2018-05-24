@@ -3,19 +3,27 @@ class Bookmark < ApplicationRecord
   ws = Webshot::Screenshot.instance
 
   after_create do
-    new_url = if url.to_s.include? 'http'
-                url
-              else
-                url_normalize(self)
-              end
+    if url.to_s.include? 'http'
+      new_url = url
+    else
+      new_url = url_normalize(self)
+    end
     begin
-      file_name = file_name(new_url) # normalize png name from url
+      file_name = file_name(new_url) #normalize png name from url
       page = MetaInspector.new(new_url.to_s)
       ws.capture new_url.to_s, "app/assets/images/#{file_name}.png", width: 200, height: 110, quality: 100
-      update(url: new_url, sc_shot: file_name + '.png', name: page.title, logo: page.images.favicon)
-    rescue StandardError
+      update(url: new_url ,sc_shot: file_name + '.png',name: page.title , logo: page.images.favicon)
+    rescue
       destroy
     end
+  end
+
+  def self.search(search)
+     if search
+       where(['url LIKE ?', "%#{search}%"])
+     else
+       all
+     end
   end
 
   private

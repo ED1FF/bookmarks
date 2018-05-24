@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = Bookmark.all.paginate(:page => params[:page], :per_page => 10)
+    @bookmarks = Bookmark.where(user_id: current_user).search(params[:search]).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /bookmarks/1
