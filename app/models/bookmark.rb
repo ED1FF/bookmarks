@@ -42,7 +42,7 @@ class Bookmark < ApplicationRecord
   #   end
   #   bookmarks
   # end
-
+#
   def self.get_friends_info(current_user)
     @graph = Koala::Facebook::API.new(current_user.oauth_token)
     friends = @graph.get_connections("me", 'friends')
