@@ -5,6 +5,11 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
     @bookmarks = Bookmark.where(user_id: current_user).search(params[:search]).paginate(:page => params[:page], :per_page => 10)
+    if current_user
+      @graph = Koala::Facebook::API.new(current_user.oauth_token)
+      friends = @graph.get_connections("me", 'friends')
+    end
+
   end
 
   # GET /bookmarks/1
