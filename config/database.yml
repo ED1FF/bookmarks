@@ -1,5 +1,5 @@
 # PostgreSQL. Versions 9.1 and up are supported.
-#
+
 # Install the pg driver:
 #   gem install pg
 # On OS X with Homebrew:
@@ -13,7 +13,7 @@
 #
 # Configure Using Gemfile
 # gem 'pg'
-#
+#asdfawefaw awefawef
 default: &default
   adapter: postgresql
   encoding: unicode
