@@ -15,7 +15,7 @@ class BookmarksController < ApplicationController
         @info = Bookmark.get_friends_info(current_user)
       end
     else
-      redirect_to 'https://localhost:3000/auth/facebook'
+      redirect_to 'https://ed1ff.herokuapp.com/auth/facebook'
     end
   end
 
