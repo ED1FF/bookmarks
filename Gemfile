@@ -12,8 +12,7 @@ gem 'metainspector'
 gem 'will_paginate'
 gem 'omniauth-facebook'
 gem 'koala'
-gem 'thin'
-# gem 'omniauth-github'
+
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
