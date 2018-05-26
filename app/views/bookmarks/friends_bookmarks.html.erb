@@ -1,18 +1,18 @@
 <br>
 <% if params[:uid] == nil %>
   <% @info.each do |member| %>
-    <%= button_to "#{member[1]}", {:controller => "bookmarks", :action => "friends_bookmarks", :uid => member[0]} , :method=>:post  %>
+    <%= button_to "#{member[1]}", {:controller => "bookmarks", :action => "friends_bookmarks", :uid => member[0]} , :method=>:post %>
   <% end %>
 <% else %>
-<% @bookmarks.each do |bookmark| %>
-  <a href="<%= bookmark.url %>">
-    <div class="">
-      <%= image_tag "#{bookmark.sc_shot}" %>
-      <br>
-      <%= image_tag "#{bookmark.logo}" %>
-      <%= bookmark.name[0..20] %>
-      <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-  </a>
-<% end %>
+  <% @bookmarks.each do |bookmark| %>
+    <a href="<%= bookmark.url %>">
+      <div class="">
+        <%= image_tag "#{bookmark.sc_shot}" %>
+        <br>
+        <%= image_tag "#{bookmark.logo}" %>
+        <%= bookmark.name[0..20] %>
+        <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </a>
+  <% end %>
 <% end %>

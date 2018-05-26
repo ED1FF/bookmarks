@@ -9,10 +9,10 @@ class BookmarksController < ApplicationController
 
   def friends_bookmarks
     if current_user
-      if params[:uid] != nil
-        @bookmarks = Bookmark.where(user_id: User.find_by(uid: params[:uid]))
-      else
+      if params[:uid] == nil
         @info = Bookmark.get_friends_info(current_user)
+      else
+        @bookmarks = Bookmark.where(user_id: User.find_by(uid: params[:uid]))
       end
     else
       redirect_to 'https://localhost:3000/auth/facebook'

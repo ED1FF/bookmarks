@@ -45,7 +45,9 @@ class Bookmark < ApplicationRecord
 
   def self.get_friends_info(current_user)
     @graph = Koala::Facebook::API.new(current_user.oauth_token)
+    puts current_user.oauth_token
     friends = @graph.get_connections("me", 'friends')
+    puts
     friends = friends.to_a
     friends_info = []
     friends.each do |friend|
@@ -54,6 +56,7 @@ class Bookmark < ApplicationRecord
       temp_arr << friend['name']
       friends_info << temp_arr
     end
+    puts friends_info
     friends_info
   end
 
