@@ -11,9 +11,9 @@
           <% bookmarks.each do |bookmark| %>
             <div class="bookmark">
               <a href="<%= bookmark.url %>">
-                <%= begin %>
+                <% begin %>
                 <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
-                <%= rescue StandardError%>
+                <% rescue StandardError%>
                 <%= image_tag "https://cdn.dribbble.com/users/1078347/screenshots/2799566/oops_1x.png", size: '200x120' %>
               <% end %>
               <br>
