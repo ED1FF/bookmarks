@@ -24,20 +24,25 @@
           <% bookmarks.each do |bookmark| %>
             <div class="bookmark">
               <a href="<%= bookmark.url %>">
-                <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
-                <br>
-                <%= image_tag "#{bookmark.logo}", size: '15x15' %>
-                <%= bookmark.name[0..18] %>
-                <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </a>
+                <a href="<%= bookmark.url %>">
+                  <% begin %>
+                    <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
+                    <% rescue StandardError%>
+                      <%= image_tag "https://cdn.dribbble.com/users/1078347/screenshots/2799566/oops_1x.png", size: '200x120' %>
+                    <% end %>
+                    <br>
+                    <%= image_tag "#{bookmark.logo}", size: '15x15' %>
+                    <%= bookmark.name[0..18] %>
+                    <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </a>
+                </div>
+              <% end %>
             </div>
           <% end %>
-        </div>
-      <% end %>
-    <% else %>
-      <h1 align='center'>Currently your friend don't have any Bookmark!!</h1>
+        <% else %>
+          <h1 align='center'>Currently your friend don't have any Bookmark!!</h1>
+        <% end %>
+        <br>
+      </div>
     <% end %>
-    <br>
-  </div>
-<% end %>
-<% end %>
+  <% end %>
