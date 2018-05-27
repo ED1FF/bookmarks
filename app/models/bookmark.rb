@@ -3,28 +3,29 @@ class Bookmark < ApplicationRecord
   ws = Webshot::Screenshot.instance
 
   after_create do
-    if url.to_s.include? 'http'
-      new_url = url
-    else
-      new_url = url_normalize(self)
-    end
+    new_url = if url.to_s.include? 'http'
+                url
+              else
+                url_normalize(self)
+              end
     begin
-      file_name = file_name(new_url) #normalize png name from url
+      file_name = file_name(new_url) # normalize png name from url
       page = MetaInspector.new(new_url.to_s)
       ws.capture new_url.to_s, "app/assets/images/#{file_name}.png", width: 200, height: 110, quality: 100
-      update(url: new_url ,sc_shot: file_name + '.png',name: page.title , logo: page.images.favicon)
-    rescue
+      update(url: new_url, sc_shot: file_name + '.png', name: page.title, logo: page.images.favicon)
+    rescue StandardError
       destroy
     end
   end
 
   def self.search(search)
-     if search
-       where(['url LIKE ?', "%#{search}%"])
-     else
-       all
-     end
+    if search
+      where(['url LIKE ?', "%#{search}%"])
+    else
+      all
+    end
   end
+
 
   # def self.get_friends_bookmarks(current_user)
   #   @graph = Koala::Facebook::API.new(current_user.oauth_token)
@@ -45,9 +46,7 @@ class Bookmark < ApplicationRecord
 
   def self.get_friends_info(current_user)
     @graph = Koala::Facebook::API.new(current_user.oauth_token)
-    puts current_user.oauth_token
-    friends = @graph.get_connections("me", 'friends')
-    puts
+    friends = @graph.get_connections('me', 'friends')
     friends = friends.to_a
     friends_info = []
     friends.each do |friend|
@@ -56,7 +55,6 @@ class Bookmark < ApplicationRecord
       temp_arr << friend['name']
       friends_info << temp_arr
     end
-    puts friends_info
     friends_info
   end
 
@@ -66,6 +64,10 @@ class Bookmark < ApplicationRecord
     url = url.delete('.')
     url = url.delete(':')
     url = url.delete('/')
+    url = url.delete('?')
+    url = url.delete('=')
+    url = url.delete('+')
+    url = url.delete('&')
     url
   end
 

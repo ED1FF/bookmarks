@@ -10,13 +10,18 @@
   </head>
 
   <body>
-    <% if current_user %>
-      Welcome
-      <%= current_user.name %>!
-      <%= link_to "Sign Out", sign_out_path %>
-    <% else %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-    <% end %>
+
+    <div class="head" align='right'>
+      <a href="<%= root_path %>"><h1 align='left' display='inline'>Bookmarks</h1></a>
+      <% if current_user %>
+        Welcome
+        <%= current_user.name %>!
+        <%= link_to "Friend List", friends_bookmarks_path , class: "btn btn-primary" %>
+        <%= link_to "Sign Out", sign_out_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

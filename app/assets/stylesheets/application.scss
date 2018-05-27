@@ -1,0 +1,190 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+/* // Custom bootstrap variables must be set or imported *before* bootstrap. */
+@import "bootstrap";
+
+body {
+  background-color: #e9ebee !important;
+  color: #1d2129;
+  font-family: inherit;
+}
+
+h1 {
+  float: left;
+}
+
+.btn-primary {
+  // background-color: #2e6ab1;
+}
+
+.btn.btn-primary-new {
+  @extend .btn;
+  // background-color: #2e6ab1;
+  background-color: #007bff;
+  color: white;
+  margin-top: 10px;
+  margin-left: -50px;
+  margin-bottom: 5px;
+}
+
+.btn-primary-new:hover {
+  color: white;
+  background-color: #007bff;
+}
+
+img {
+  border-radius: 3px;
+}
+
+a {
+  color: #1d2129;
+}
+
+a:hover {
+  color: #1d2129;
+  background-color: white;
+}
+
+.btn-primary:visited {
+  color: white;
+}
+
+.btn-primary:hover {
+  color: white;
+  background-color: #007bff;
+}
+
+.all {
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.head {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 15px;
+  margin-bottom: 5%;
+}
+.hidden{
+  display: none;
+}
+
+.search {
+  margin-left: 43%;
+}
+
+.bookmark {
+  margin-left: 15px;
+  width: 204px;
+  border: 2px solid #dddfe2;
+  background: white;
+  border-radius: 5px;
+}
+
+.bookmark:hover {
+  border: 2px solid #007bff;
+}
+
+img.bookmark {
+  height: 100%;
+}
+
+.digg_pagination {
+  background-color: #e9ebee !important;
+  cursor: default;
+  margin-left: 39.5%;
+  margin-top: 20px;
+  /* self-clearing method: */
+}
+
+.digg_pagination a,
+.digg_pagination em,
+.digg_pagination span {
+  padding: 0.2em 0.5em;
+  display: block;
+  float: left;
+  margin-right: 1px;
+}
+
+.digg_pagination span {
+  margin-left: 5%;
+}
+
+.digg_pagination .disabled {
+  color: #999999;
+  border: 1px solid #dddddd;
+}
+
+.digg_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background: #007bff;
+  color: white;
+  border: 1px solid #2e6ab1;
+}
+
+.digg_pagination a {
+  text-decoration: none;
+  color: #105cb6;
+  border: 1px solid #9aafe5;
+}
+
+.digg_pagination a:focus,
+.digg_pagination a:hover {
+  color: #000033;
+  border-color: #000033;
+}
+
+.digg_pagination .page_info {
+  background: #007bff;
+  color: white;
+  padding: 0.4em 0.6em;
+  width: 22em;
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+
+.digg_pagination .page_info b {
+  color: white;
+  background: #007bff;
+  padding: 0.1em 0.25em;
+}
+
+.digg_pagination:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+* html .digg_pagination {
+  height: 1%;
+}
+
+*:first-child + html .digg_pagination {
+  overflow: hidden;
+}
