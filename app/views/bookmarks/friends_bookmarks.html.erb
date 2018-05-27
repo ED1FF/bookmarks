@@ -33,7 +33,6 @@
                     <br>
                     <%= image_tag "#{bookmark.logo}", size: '15x15' %>
                     <%= bookmark.name[0..18] %>
-                    <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
                   </a>
                 </div>
               <% end %>
