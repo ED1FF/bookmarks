@@ -12,7 +12,7 @@
             <div class="bookmark">
               <a href="<%= bookmark.url %>">
                 <% begin %>
-                <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
+                <%= cl_image_tag("#{bookmark.sc_shot}") %>
                 <% rescue StandardError%>
                 <%= image_tag "https://cdn.dribbble.com/users/1078347/screenshots/2799566/oops_1x.png", size: '200x120' %>
               <% end %>
