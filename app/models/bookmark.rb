@@ -12,6 +12,7 @@ class Bookmark < ApplicationRecord
       file_name = file_name(new_url) # normalize png name from url
       page = MetaInspector.new(new_url.to_s)
       ws.capture new_url.to_s, "app/assets/images/#{file_name}.png", width: 200, height: 110, quality: 100
+      Cloudinary::Uploader.upload("app/assets/images/#{file_name}.png", :use_filename => true)
       update(url: new_url, sc_shot: file_name + '.png', name: page.title, logo: page.images.favicon)
     rescue StandardError
       destroy
