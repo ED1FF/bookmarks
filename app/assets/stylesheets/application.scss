@@ -23,7 +23,16 @@ body {
 }
 
 h1 {
-  float: left;
+  margin-bottom: 50px;
+}
+
+.welcomeh1{
+  margin-left: 35%;
+  margin-top: 15%;
+}
+
+.h1newbook {
+  margin-left: 43%;
 }
 
 .btn-primary {
@@ -82,13 +91,21 @@ a:hover {
   text-align: center;
 }
 
-.head {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 15px;
-  margin-bottom: 5%;
+.col {}
+
+.friend-button {
+  margin-left: 10%;
 }
-.hidden{
+
+.head {
+  margin: 15px 20px 5%;
+}
+
+h1.head {
+  float: left;
+}
+
+.hidden {
   display: none;
 }
 

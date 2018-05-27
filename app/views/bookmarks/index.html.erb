@@ -1,40 +1,45 @@
-<p id="notice"><%= notice %></p>
-
 <% if current_user %>
-  <div class="search" >
+  <div class="search">
     <%= form_tag bookmarks_path, method: 'get' do %>
     <%= text_field_tag :search, params[:search] , value: 'search by URL'%>
     <%= submit_tag "Search" , class: "btn btn-primary"%>
   </div>
   <div class="all">
-    <% if Bookmark.where(user_id: current_user).count > 0 %>
-      <% @bookmarks.each_slice(5) do |bookmarks| %>
-        <div class="row">
-          <% bookmarks.each do |bookmark| %>
-          <div class="bookmark">
-            <a href="<%= bookmark.url %>">
-                <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
-                <br>
-                <%= image_tag "#{bookmark.logo}", size: '15x15' %>
-                <%= bookmark.name[0..18] %>
-                <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </a>
+      <% if Bookmark.where(user_id: current_user).count > 0 %>
+        <% @bookmarks.each_slice(5) do |bookmarks| %>
+          <div class="row">
+            <% bookmarks.each do |bookmark| %>
+              <div class="bookmark">
+                <a href="<%= bookmark.url %>">
+                  <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
+                  <br>
+                  <%= image_tag "#{bookmark.logo}", size: '15x15' %>
+                  <%= bookmark.name[0..18] %>
+                  <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </a>
+              </div>
+            <% end %>
           </div>
-          <% end %>
-        </div>
-      <% end %>
+        <% end %>
+        <% else %>
+          <h1 align='center'>Currently you don't have any Bookmark!! Create it by button below.</h1>
+
     <% end %>
     <br>
   </div>
   <div align='center'>
-     <%= link_to 'New Bookmark', new_bookmark_path , class: "btn btn-primary-new"%>
+    <%= link_to 'New Bookmark', new_bookmark_path , class: "btn btn-primary-new"%>
   </div>
-
+  <% if Bookmark.where(user_id: current_user).count > 0 %>
   <div class="digg_pagination">
     <div class="page_info">
       <%= page_entries_info @posts %>
     </div>
     <%= will_paginate @posts, :container => false %>
   </div>
+  <% end %>
 <% end %>
+<% else %>
+  <h1 class="welcomeh1">Welcome to bookmarks app</h1>
+
 <% end %>

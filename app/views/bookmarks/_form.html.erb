@@ -1,22 +1,26 @@
 <%= form_with(model: bookmark, local: true) do |form| %>
-  <% if bookmark.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+<% if bookmark.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(bookmark.errors.count, "error") %>
+      prohibited this bookmark from being saved:</h2>
 
-      <ul>
+    <ul>
       <% bookmark.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
+    </ul>
   </div>
+<% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="actions" align='center'>
+  <%= form.text_field :url , placeholder: 'Enter URL Here'%>
+</div>
+
+<div class="actions" align='center'>
+  <%= form.submit 'Create Bookmark', class: 'btn btn-primary' %>
+</div>
+
+<div class="actions" align='center'>
+  <%= link_to 'Back', bookmarks_path , class: 'btn btn-primary'%>
+</div>
 <% end %>

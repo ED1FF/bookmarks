@@ -1,42 +1,43 @@
 <br>
+<h1 align="center" margin-bottom='10%'>Friend List</h1>
 <% if params[:uid] == nil %>
-  <% @info.each do |member| %>
-    <%= button_to "#{member[1]}", {:controller => "bookmarks", :action => "friends_bookmarks", :uid => member[0]} , :method=>:post %>
+  <% @info.each_slice(7) do |members| %>
+    <div class="row">
+      <% members.each do |member| %>
+        <div class="friend-button">
+          <%= button_to "#{member[1]}", {:controller => "bookmarks", :action => "friends_bookmarks", :uid => member[0]} , :method=>:post, class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 <% else %>
-<div class="search" >
-  <%= form_tag friends_bookmarks_path, method: 'get' do %>
-  <%= text_field_tag :search, params[:search] , value: 'search by URL'%>
-  <%= text_field_tag :uid, params[:uid] , value: "#{params[:uid]}", class: "hidden" %>
-  <%= submit_tag "Search" , class: "btn btn-primary"%>
-</div>
-<div class="all">
-  <% if Bookmark.where(user_id: current_user).count > 0 %>
-    <% @bookmarks.each_slice(5) do |bookmarks| %>
-      <div class="row">
-        <% bookmarks.each do |bookmark| %>
-        <div class="bookmark">
-          <a href="<%= bookmark.url %>">
-              <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
-              <br>
-              <%= image_tag "#{bookmark.logo}", size: '15x15' %>
-              <%= bookmark.name[0..18] %>
-              <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </a>
-        </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
-  <br>
-</div>
-
-
-<div class="digg_pagination">
-  <div class="page_info">
-    <%= page_entries_info @posts %>
+  <div class="search">
+    <%= form_tag friends_bookmarks_path, method: 'get' do %>
+    <%= text_field_tag :search, params[:search] , value: 'search by URL'%>
+    <%= text_field_tag :uid, params[:uid] , value: "#{params[:uid]}", class: "hidden" %>
+    <%= submit_tag "Search" , class: "btn btn-primary"%>
   </div>
-  <%= will_paginate @posts, :container => false %>
-</div>
+  <div class="all">
+    <% if @bookmarks.count > 0 %>
+      <% @bookmarks.each_slice(5) do |bookmarks| %>
+        <div class="row">
+          <% bookmarks.each do |bookmark| %>
+            <div class="bookmark">
+              <a href="<%= bookmark.url %>">
+                <%= image_tag "#{bookmark.sc_shot}" , size: '200x120'%>
+                <br>
+                <%= image_tag "#{bookmark.logo}", size: '15x15' %>
+                <%= bookmark.name[0..18] %>
+                <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h1 align='center'>Currently your friend don't have any Bookmark!!</h1>
+    <% end %>
+    <br>
+  </div>
 <% end %>
 <% end %>
