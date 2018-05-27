@@ -17,7 +17,6 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'sprockets-rails'
 gem 'jquery-rails'
 gem 'cloudinary'
-# gem 'screencap'
 # gem 'omniauth-github'
 
 gem 'coffee-rails', '~> 4.2'
