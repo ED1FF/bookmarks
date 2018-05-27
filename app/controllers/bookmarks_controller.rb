@@ -15,7 +15,7 @@ class BookmarksController < ApplicationController
         @bookmarks = Bookmark.where(user_id: User.find_by(uid: params[:uid])).search(params[:search])
       end
     else
-      redirect_to 'https://localhost:3000/auth/facebook'
+      redirect_to 'https://ediff-bookmarks.herokuapp.com/auth/facebook'
     end
   end
 

@@ -68,6 +68,7 @@ class Bookmark < ApplicationRecord
     url = url.delete('=')
     url = url.delete('+')
     url = url.delete('&')
+
     url
   end
 
