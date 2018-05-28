@@ -13,7 +13,7 @@
 <% else %>
   <div class="search">
     <%= form_tag friends_bookmarks_path, method: 'get' do %>
-    <%= text_field_tag :search, params[:search] , value: 'search by URL'%>
+    <%= text_field_tag :search, params[:search] , placeholder: 'Enter URL Here'%>
     <%= text_field_tag :uid, params[:uid] , value: "#{params[:uid]}", class: "hidden" %>
     <%= submit_tag "Search" , class: "btn btn-primary"%>
   </div>

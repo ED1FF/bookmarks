@@ -1,7 +1,7 @@
 <% if current_user %>
   <div class="search">
     <%= form_tag bookmarks_path, method: 'get' do %>
-    <%= text_field_tag :search, params[:search] , value: 'search by URL'%>
+    <%= text_field_tag :search, params[:search] , placeholder: 'Enter URL Here'%>
     <%= submit_tag "Search" , class: "btn btn-primary"%>
   </div>
   <div class="all">
