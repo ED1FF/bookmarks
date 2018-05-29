@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'cloudinary'
 gem "validate_url"
 gem 'sidekiq'
+gem 'redis'
 # gem 'omniauth-github'
 
 gem 'coffee-rails', '~> 4.2'
