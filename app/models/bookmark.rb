@@ -6,7 +6,7 @@ class Bookmark < ApplicationRecord
     begin
       page = MetaInspector.new(new_url.to_s)
       update(url: new_url, name: page.title, logo: page.images.favicon)
-      ScreenShotJob.delay_until(Time.now + 3).perform_later(self.id, new_url)
+      ScreenShotJob.delay_until(Time.now + 1).perform_later(self.id, new_url)
     rescue StandardError
        delete
     end
