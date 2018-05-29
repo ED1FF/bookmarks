@@ -11,37 +11,38 @@
           <% bookmarks.each do |bookmark| %>
             <div class="bookmark">
               <a href="<%= bookmark.url %>">
-                <% begin %>
-                <%= image_tag "http://res.cloudinary.com/ediff/image/upload/v1527452235/#{bookmark.sc_shot}" , size: '200x120'%>
-                <% rescue StandardError%>
-                <%= image_tag "https://cdn.dribbble.com/users/1078347/screenshots/2799566/oops_1x.png", size: '200x120' %>
-              <% end %>
-              <br>
-              <%= image_tag "#{bookmark.logo}", size: '15x15' %>
-              <%= bookmark.name[0..18] %>
-              <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
-            </a>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% else %>
-    <h1 align='center'>Currently you don't have any Bookmark!! Create it by button below.</h1>
+                <% if bookmark.sc_shot != nil%>
+                  <%= image_tag "http://res.cloudinary.com/ediff/image/upload/v1527452235/#{bookmark.sc_shot}" , size: '200x120'%>
+                <% else %>
+                  <%= image_tag "https://www.haeger.com/images/coming-soon.jpg", size: '200x120' %>
+                <% end %>
 
-  <% end %>
-  <br>
-</div>
-<div align='center'>
-  <%= link_to 'New Bookmark', new_bookmark_path , class: "btn btn-primary-new"%>
-</div>
-<% if Bookmark.where(user_id: current_user).count > 0 %>
-  <div class="digg_pagination">
-    <div class="page_info">
-      <%= page_entries_info @posts %>
-    </div>
-    <%= will_paginate @posts, :container => false %>
+                <br>
+                <%= image_tag "#{bookmark.logo}", size: '15x15' %>
+                <%= bookmark.name[0..18] %>
+                <%= link_to '✖', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h1 align='center'>Currently you don't have any Bookmark!! Create it by button below.</h1>
+
+    <% end %>
+    <br>
   </div>
-<% end %>
+  <div align='center'>
+    <%= link_to 'New Bookmark', new_bookmark_path , class: "btn btn-primary-new"%>
+  </div>
+  <% if Bookmark.where(user_id: current_user).count > 0 %>
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @posts %>
+      </div>
+      <%= will_paginate @posts, :container => false %>
+    </div>
+  <% end %>
 <% end %>
 <% else %>
 <h1 class="welcomeh1">Welcome to bookmarks app</h1>
