@@ -18,6 +18,7 @@ gem 'sprockets-rails'
 gem 'jquery-rails'
 gem 'cloudinary'
 gem "validate_url"
+gem 'sidekiq'
 # gem 'omniauth-github'
 
 gem 'coffee-rails', '~> 4.2'

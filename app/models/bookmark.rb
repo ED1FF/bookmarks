@@ -1,15 +1,12 @@
 class Bookmark < ApplicationRecord
   belongs_to :user
-  ws = Webshot::Screenshot.instance
   validates_url :url, url: true
   after_create do
     new_url = url
     begin
-      file_name = file_name(new_url) # normalize png name from url
       page = MetaInspector.new(new_url.to_s)
-      ws.capture new_url.to_s, "app/assets/images/#{file_name}.png", width: 200, height: 110, quality: 100
-      Cloudinary::Uploader.upload("app/assets/images/#{file_name}.png", :use_filename => true, :unique_filename => false)
-      update(url: new_url, sc_shot: file_name + '.png', name: page.title, logo: page.images.favicon)
+      update(url: new_url, name: page.title, logo: page.images.favicon)
+      ScreenShotJob.delay_until(Time.now + 10).perform_later(self.id, new_url)
     rescue StandardError
        delete
     end
@@ -55,9 +52,8 @@ class Bookmark < ApplicationRecord
     friends_info
   end
 
-  private
 
-  def file_name(url)
+  def self.file_name(url)
     url = url.delete('.')
     url = url.delete(':')
     url = url.delete('/')
